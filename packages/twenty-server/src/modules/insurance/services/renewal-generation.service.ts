@@ -1,98 +1,73 @@
 import { Injectable, Logger } from '@nestjs/common';
 
-import { isDefined } from 'twenty-shared/utils';
-
-import { GlobalWorkspaceOrmManager } from 'src/engine/twenty-orm/global-workspace-datasource/global-workspace-orm.manager';
-import { buildSystemAuthContext } from 'src/engine/twenty-orm/utils/build-system-auth-context.util';
-import { PolicyWorkspaceEntity } from 'src/modules/insurance/standard-objects/policy.workspace-entity';
-import { RenewalWorkspaceEntity } from 'src/modules/insurance/standard-objects/renewal.workspace-entity';
+import { TwentyORMService } from 'src/engine/twenty-orm/twenty-orm.service';
 
 @Injectable()
 export class RenewalGenerationService {
   private readonly logger = new Logger(RenewalGenerationService.name);
 
-  constructor(
-    private readonly globalWorkspaceOrmManager: GlobalWorkspaceOrmManager,
-  ) {}
+  constructor(private readonly twentyORMService: TwentyORMService) {}
 
   async generateUpcomingRenewals(workspaceId: string): Promise<number> {
-    const authContext = buildSystemAuthContext(workspaceId);
+    this.logger.log(
+      `Generating upcoming renewals for workspace ${workspaceId}`,
+    );
 
-    return this.globalWorkspaceOrmManager.executeInWorkspaceContext(
-      async () => {
-        const policyRepository =
-          await this.globalWorkspaceOrmManager.getRepository(
-            workspaceId,
-            PolicyWorkspaceEntity,
-            { shouldBypassPermissionChecks: true },
-          );
+    try {
+      const policyRepository =
+        await this.twentyORMService.getRepositoryForWorkspace(
+          workspaceId,
+          'policy',
+        );
 
-        const renewalRepository =
-          await this.globalWorkspaceOrmManager.getRepository(
-            workspaceId,
-            RenewalWorkspaceEntity,
-            { shouldBypassPermissionChecks: true },
-          );
+      const renewalRepository =
+        await this.twentyORMService.getRepositoryForWorkspace(
+          workspaceId,
+          'renewal',
+        );
 
-        const now = new Date();
-        const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+      const now = new Date();
+      const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
 
-        const expiringPolicies = await policyRepository.find({
-          where: {
-            endDate: {
-              gte: now.toISOString(),
-              lte: thirtyDaysFromNow.toISOString(),
-            },
+      const expiringPolicies = await policyRepository.find({
+        where: {
+          endDate: {
+            gte: now,
+            lte: thirtyDaysFromNow,
           },
+          status: 'active',
+        },
+      });
+
+      let createdCount = 0;
+
+      for (const policy of expiringPolicies) {
+        const existingRenewal = await renewalRepository.findOne({
+          where: { policyId: policy.id },
         });
 
-        if (expiringPolicies.length === 0) {
-          this.logger.log(
-            `No policies expiring in the next 30 days for workspace ${workspaceId}`,
-          );
-
-          return 0;
-        }
-
-        let createdCount = 0;
-
-        for (const policy of expiringPolicies) {
-          if (!isDefined(policy.id)) {
-            continue;
-          }
-
-          const existingRenewal = await renewalRepository.findOne({
-            where: { policyId: policy.id },
-          });
-
-          if (isDefined(existingRenewal)) {
-            continue;
-          }
-
-          const renewalDate = policy.endDate ?? new Date();
-          const premiumAmount = policy.premium?.amount;
-          const currencyCode = policy.premium?.currencyCode;
-
+        if (!existingRenewal) {
           await renewalRepository.save({
-            renewalDate,
-            newPremium: isDefined(premiumAmount)
-              ? { amount: premiumAmount, currencyCode: currencyCode ?? 'USD' }
-              : null,
+            renewalDate: policy.endDate,
+            newPremium: policy.premium,
             status: 'pending',
             policyId: policy.id,
             brokerId: policy.brokerId,
           });
-
           createdCount++;
         }
+      }
 
-        this.logger.log(
-          `Created ${createdCount} renewal(s) for workspace ${workspaceId}`,
-        );
+      this.logger.log(
+        `Created ${createdCount} new renewals for workspace ${workspaceId}`,
+      );
 
-        return createdCount;
-      },
-      authContext,
-    );
+      return createdCount;
+    } catch (error) {
+      this.logger.error(
+        `Error generating renewals for workspace ${workspaceId}: ${error.message}`,
+      );
+      return 0;
+    }
   }
 }
