@@ -1,0 +1,21 @@
+export type InsuranceTask = {
+  __typename: 'InsuranceTask';
+  id: string;
+  createdAt: string;
+  updatedAt?: string;
+  deletedAt?: string | null;
+  title: string;
+  description: string | null;
+  dueDate: string | null;
+  priority: string;
+  status: string;
+  type: string;
+  assignedToId: string | null;
+  policyId: string | null;
+  claimId: string | null;
+  companyId: string | null;
+  personId: string | null;
+  ownerId: string | null;
+  brokerId: string | null;
+  position: number;
+};
