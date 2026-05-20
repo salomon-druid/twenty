@@ -15,5 +15,6 @@ export type Premium = {
   paidDate: string | null;
   policyId: string | null;
   ownerId: string | null;
+  brokerId: string | null;
   position: number;
 };

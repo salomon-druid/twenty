@@ -11,5 +11,6 @@ export type RiskProfile = {
   companyId: string | null;
   personId: string | null;
   ownerId: string | null;
+  brokerId: string | null;
   position: number;
 };

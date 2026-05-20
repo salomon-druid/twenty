@@ -19,5 +19,6 @@ export type Policy = {
   companyId: string | null;
   pointOfContactId: string | null;
   ownerId: string | null;
+  brokerId: string | null;
   position: number;
 };

@@ -12,6 +12,7 @@ import { type NoteTargetWorkspaceEntity } from 'src/modules/note/standard-object
 import { type PolicyWorkspaceEntity } from 'src/modules/insurance/standard-objects/policy.workspace-entity';
 import { type TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { type TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
+import { type BrokerWorkspaceEntity } from 'src/modules/insurance/standard-objects/broker.workspace-entity';
 import { type WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
 
 const NAME_FIELD_NAME = 'amount';
@@ -37,5 +38,7 @@ export class PremiumWorkspaceEntity extends BaseWorkspaceEntity {
   timelineActivities: EntityRelation<TimelineActivityWorkspaceEntity[]>;
   owner: EntityRelation<WorkspaceMemberWorkspaceEntity> | null;
   ownerId: string | null;
+  broker: EntityRelation<BrokerWorkspaceEntity> | null;
+  brokerId: string | null;
   searchVector: string;
 }
