@@ -1,0 +1,94 @@
+name: twenty-insurance
+
+services:
+  server:
+    build:
+      context: ..
+      dockerfile: packages/twenty-docker/twenty/Dockerfile
+      target: server
+    volumes:
+      - server-local-data:/app/packages/twenty-server/.local-storage
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NODE_PORT: 3000
+      PG_DATABASE_URL: postgres://postgres:postgres@db:5432/default
+      SERVER_URL: ${SERVER_URL:-http://localhost:3000}
+      REDIS_URL: redis://redis:6379
+      APP_SECRET: ${APP_SECRET:-change-me-in-production}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+      IS_MULTI_DATA_CENTER_ENABLED: "false"
+      MESSAGE_QUEUE_TYPE: "pg-boss"
+      SIGN_IN_PREFILLED: "true"
+      DEFAULT_WORKSPACE_ID: "00000000-0000-0000-0000-000000000000"
+      # Email (configure as needed)
+      # EMAIL_FROM_ADDRESS: noreply@yourdomain.com
+      # EMAIL_FROM_NAME: Twenty Insurance
+      # EMAIL_DRIVER: smtp
+      # EMAIL_SMTP_HOST: smtp.gmail.com
+      # EMAIL_SMTP_PORT: 465
+      # EMAIL_SMTP_USER:
+      # EMAIL_SMTP_PASSWORD:
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail http://localhost:3000/healthz
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: ..
+      dockerfile: packages/twenty-docker/twenty/Dockerfile
+      target: server
+    volumes:
+      - server-local-data:/app/packages/twenty-server/.local-storage
+    command: ["yarn", "worker:prod"]
+    environment:
+      NODE_ENV: production
+      PG_DATABASE_URL: postgres://postgres:postgres@db:5432/default
+      SERVER_URL: ${SERVER_URL:-http://localhost:3000}
+      REDIS_URL: redis://redis:6379
+      APP_SECRET: ${APP_SECRET:-change-me-in-production}
+      MESSAGE_QUEUE_TYPE: "pg-boss"
+    depends_on:
+      db:
+        condition: service_healthy
+      server:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: default
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    healthcheck:
+      test: pg_isready -U postgres -h localhost -d postgres
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    command: ["--maxmemory-policy", "noeviction"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  db-data:
+  server-local-data:
