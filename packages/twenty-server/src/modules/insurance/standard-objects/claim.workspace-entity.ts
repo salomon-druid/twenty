@@ -30,6 +30,24 @@ export class ClaimWorkspaceEntity extends BaseWorkspaceEntity {
   status: string;
   description: string | null;
   resolution: string | null;
+  // Commercial/Industrial specific fields
+  claimType: string;
+  dateOfLoss: Date | null;
+  dateReported: Date | null;
+  reserveAmount: CurrencyMetadata | null;
+  paidAmount: CurrencyMetadata | null;
+  recoveredAmount: CurrencyMetadata | null;
+  deductibleApplied: CurrencyMetadata | null;
+  adjuster: string | null;
+  adjusterCompany: string | null;
+  lawFirm: string | null;
+  courtCase: boolean;
+  settlementDate: Date | null;
+  rootCause: string | null;
+  preventionMeasures: string | null;
+  isReinsurance: boolean;
+  reinsurerShare: number | null;
+  // Standard fields
   position: number;
   createdBy: ActorMetadata;
   updatedBy: ActorMetadata;
