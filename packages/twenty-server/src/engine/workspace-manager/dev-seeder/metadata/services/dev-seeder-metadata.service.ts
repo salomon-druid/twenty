@@ -32,12 +32,14 @@ import { PREMIUM_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-see
 import { PROVISION_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/provision-custom-object-seed.constant';
 import { RENEWAL_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/renewal-custom-object-seed.constant';
 import { RISK_PROFILE_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/risk-profile-custom-object-seed.constant';
+import { QUOTE_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/quote-custom-object-seed.constant';
 import { CLAIM_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/claim-custom-field-seeds.constant';
 import { POLICY_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/policy-custom-field-seeds.constant';
 import { PREMIUM_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/premium-custom-field-seeds.constant';
 import { PROVISION_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/provision-custom-field-seeds.constant';
 import { RENEWAL_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/renewal-custom-field-seeds.constant';
 import { RISK_PROFILE_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/risk-profile-custom-field-seeds.constant';
+import { QUOTE_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/quote-custom-field-seeds.constant';
 import { type FieldMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/field-metadata-seed.type';
 import { type ObjectMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/object-metadata-seed.type';
 
@@ -103,6 +105,7 @@ export class DevSeederMetadataService {
         { seed: RISK_PROFILE_CUSTOM_OBJECT_SEED, fields: RISK_PROFILE_CUSTOM_FIELD_SEEDS },
         { seed: PREMIUM_CUSTOM_OBJECT_SEED, fields: PREMIUM_CUSTOM_FIELD_SEEDS },
         { seed: PROVISION_CUSTOM_OBJECT_SEED, fields: PROVISION_CUSTOM_FIELD_SEEDS },
+        { seed: QUOTE_CUSTOM_OBJECT_SEED, fields: QUOTE_CUSTOM_FIELD_SEEDS },
       ],
       fields: [
         { objectName: 'company', seeds: COMPANY_CUSTOM_FIELD_SEEDS },
@@ -208,6 +211,26 @@ export class DevSeederMetadataService {
           targetFieldLabel: 'Person',
           targetFieldIcon: 'IconUser',
         },
+        // Insurance: Company -> Quotes
+        {
+          sourceObjectName: 'company',
+          name: 'quotes',
+          label: 'Quotes',
+          icon: 'IconFileDescription',
+          targetObjectName: QUOTE_CUSTOM_OBJECT_SEED.nameSingular,
+          targetFieldLabel: 'Company',
+          targetFieldIcon: 'IconBuildingSkyscraper',
+        },
+        // Insurance: Person -> Quotes
+        {
+          sourceObjectName: 'person',
+          name: 'quotes',
+          label: 'Quotes',
+          icon: 'IconFileDescription',
+          targetObjectName: QUOTE_CUSTOM_OBJECT_SEED.nameSingular,
+          targetFieldLabel: 'Person',
+          targetFieldIcon: 'IconUser',
+        },
       ],
       junctionConfigs: [
         // Employment History junction configs
@@ -267,6 +290,17 @@ export class DevSeederMetadataService {
           objectName: 'person',
           fieldName: 'riskProfiles',
           junctionTargetFieldRef: `${RISK_PROFILE_CUSTOM_OBJECT_SEED.nameSingular}.person`,
+        },
+        // Insurance: Quote junction configs
+        {
+          objectName: 'company',
+          fieldName: 'quotes',
+          junctionTargetFieldRef: `${QUOTE_CUSTOM_OBJECT_SEED.nameSingular}.company`,
+        },
+        {
+          objectName: 'person',
+          fieldName: 'quotes',
+          junctionTargetFieldRef: `${QUOTE_CUSTOM_OBJECT_SEED.nameSingular}.person`,
         },
       ],
     },
