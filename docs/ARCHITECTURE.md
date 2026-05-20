@@ -555,3 +555,51 @@ docker compose -f docker-compose.insurance.yml down
 - Need to add proper error handling and loading states
 - Need to add confirmation dialogs for destructive actions
 - Need to add proper accessibility (a11y) attributes
+
+---
+
+## Phase A Improvements (Commercial/Industrial Insurance)
+
+### Changes Made
+
+#### 1. Renewal Status Alignment
+- **Before:** Dev seeder had `Pending, Accepted, Declined, Expired` but workflow service used `pending, contacted, negotiated, renewed, expired`
+- **After:** Dev seeder updated to match workflow: `Pending, Contacted, Negotiated, Renewed, Expired`
+
+#### 2. Policy — Commercial/Industrial Fields Added
+New fields: `policyType`, `sumInsured`, `deductible`, `coInsurance`, `underwriter`, `brokerageRate`, `invoiceNumber`, `paymentTerms`, `industryCode`, `employeeCount`, `annualRevenue`
+
+#### 3. Claim — Commercial/Industrial Fields Added
+New fields: `claimType`, `dateOfLoss`, `dateReported`, `reserveAmount`, `paidAmount`, `recoveredAmount`, `deductibleApplied`, `adjuster`, `adjusterCompany`, `lawFirm`, `courtCase`, `settlementDate`, `rootCause`, `preventionMeasures`, `isReinsurance`, `reinsurerShare`
+
+#### 4. New Object: Quote (Angebot)
+- Fields: `quoteNumber`, `status` (Draft/Sent/Negotiating/Bound/Declined/Expired), `validUntil`, `proposedPremium`, `negotiationNotes`, `boundDate`
+- Relations: `policy`, `company`, `person`, `broker`
+- Junction: Company → Quotes, Person → Quotes
+
+#### 5. New Object: Insurance Task
+- Fields: `title`, `description`, `dueDate`, `priority` (Low/Medium/High/Urgent), `status` (Open/In Progress/Completed/Cancelled), `type` (Renewal Follow-up/Claim Follow-up/Client Meeting/Document Request/Inspection/Payment Reminder/Other)
+- Relations: `assignedTo` (workspace member), `policy`, `claim`, `company`, `person`, `broker`
+- Junction: Company → Tasks, Person → Tasks
+
+#### 6. New Object: Site (Location)
+- Fields: `name`, `address`, `type` (Headquarters/Branch/Factory/Warehouse/Retail/Construction Site), `riskZone` (Low/Medium/High/Critical), `constructionYear`, `areaSqm`, `lastInspection`
+- Relations: `company`, `policies`, `broker`
+- Junction: Company → Sites
+
+### Updated Object Count
+- **Before:** 7 insurance objects (Policy, Claim, Renewal, RiskProfile, Premium, Provision, Broker)
+- **After:** 10 insurance objects (+ Quote, InsuranceTask, Site)
+
+### Updated Commit History
+```
+d4d576ad62  feat(insurance): Phase A5+A6 — create Task and Site objects
+b5f0bfd463  feat(insurance): Phase A4 — create Quote/Angebot object
+95ae8894f2  feat(insurance): Phase A3 — add commercial/industrial fields to Claim
+64c4a86dec  feat(insurance): Phase A1+A2 — fix renewal status + Policy fields
+9fd07581bf  docs: add comprehensive architecture documentation
+c6d0c8261b  feat(insurance): add Phase 6 — Docker self-hosting deployment
+30afefa94e  feat(insurance): add Phase 5 insurance features
+c391d4c80b  feat(insurance): add Broker entity and brokerId
+67b25f6742  feat(insurance): add insurance data model (Phases 2-4)
+```

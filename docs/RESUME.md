@@ -173,11 +173,29 @@ All 6 original phases are complete. The next work is **improvements for commerci
 - **Regulatory** — BaFin oversight, VVG compliance
 - **Common insurers** — Allianz, AXA, Zurich, HDI, Hiscox, etc.
 
-## Next Session Checklist
+## Current Phase: Phase A Improvements (Commercial/Industrial Insurance)
 
-When resuming work:
-1. Read `docs/ARCHITECTURE.md` for full system understanding
-2. Read this file for session context
-3. Check `git status` and `git log --oneline -5`
-4. Verify Docker services are running
-5. Pick up from the improvement plan (see docs/IMPROVEMENTS.md)
+### Completed Steps
+1. ✅ Fix renewal status alignment (dev seeder ↔ workflow)
+2. ✅ Add commercial/industrial fields to Policy (13 new fields)
+3. ✅ Add commercial/industrial fields to Claim (18 new fields)
+4. ✅ Create Quote/Angebot object
+5. ✅ Create Insurance Task object
+6. ✅ Create Site/Location object
+7. ✅ Build verification (TypeScript compiles, typecheck passes)
+
+### Next Steps (Phase B — Important)
+1. Add German translations for all new fields and objects
+2. Enhanced renewal workflow (market research → quote → negotiation → binding)
+3. Claims workflow (reported → investigation → settlement)
+4. Email notifications (renewal reminders, claim updates)
+5. Broker dashboard with key metrics
+6. Document management improvements
+
+### Next Steps (Phase C — Valuable)
+1. Reinsurance object
+2. Client dashboard
+3. Standard reports
+4. Navigation improvements
+5. List view enhancements
+6. Record page improvements
