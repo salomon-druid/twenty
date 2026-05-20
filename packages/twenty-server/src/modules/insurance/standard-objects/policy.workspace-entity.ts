@@ -31,6 +31,19 @@ export class PolicyWorkspaceEntity extends BaseWorkspaceEntity {
   status: string;
   coverageDetails: string | null;
   insurer: string | null;
+  // Commercial/Industrial specific fields
+  policyType: string;
+  sumInsured: CurrencyMetadata | null;
+  deductible: CurrencyMetadata | null;
+  coInsurance: number | null;
+  underwriter: string | null;
+  brokerageRate: number | null;
+  invoiceNumber: string | null;
+  paymentTerms: string;
+  industryCode: string | null;
+  employeeCount: number | null;
+  annualRevenue: CurrencyMetadata | null;
+  // Standard fields
   position: number;
   createdBy: ActorMetadata;
   updatedBy: ActorMetadata;

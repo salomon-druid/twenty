@@ -57,4 +57,72 @@ export const POLICY_CUSTOM_FIELD_SEEDS: FieldMetadataSeed[] = [
     label: 'Insurer',
     name: 'insurer',
   },
+  // Commercial/Industrial specific fields
+  {
+    type: FieldMetadataType.SELECT,
+    label: 'Policy Type',
+    name: 'policyType',
+    options: [
+      { label: 'Commercial', value: 'COMMERCIAL', position: 0, color: 'blue' },
+      { label: 'Industrial', value: 'INDUSTRIAL', position: 1, color: 'orange' },
+      { label: 'Mixed', value: 'MIXED', position: 2, color: 'purple' },
+    ],
+  },
+  {
+    type: FieldMetadataType.CURRENCY,
+    label: 'Sum Insured',
+    name: 'sumInsured',
+  },
+  {
+    type: FieldMetadataType.CURRENCY,
+    label: 'Deductible',
+    name: 'deductible',
+  },
+  {
+    type: FieldMetadataType.NUMBER,
+    label: 'Co-Insurance (%)',
+    name: 'coInsurance',
+  },
+  {
+    type: FieldMetadataType.TEXT,
+    label: 'Underwriter',
+    name: 'underwriter',
+  },
+  {
+    type: FieldMetadataType.NUMBER,
+    label: 'Brokerage Rate (%)',
+    name: 'brokerageRate',
+  },
+  {
+    type: FieldMetadataType.TEXT,
+    label: 'Invoice Number',
+    name: 'invoiceNumber',
+  },
+  {
+    type: FieldMetadataType.SELECT,
+    label: 'Payment Terms',
+    name: 'paymentTerms',
+    options: [
+      { label: 'Monthly', value: 'MONTHLY', position: 0, color: 'blue' },
+      { label: 'Quarterly', value: 'QUARTERLY', position: 1, color: 'green' },
+      { label: 'Semi-Annual', value: 'SEMI_ANNUAL', position: 2, color: 'yellow' },
+      { label: 'Annual', value: 'ANNUAL', position: 3, color: 'orange' },
+      { label: 'Single Premium', value: 'SINGLE', position: 4, color: 'purple' },
+    ],
+  },
+  {
+    type: FieldMetadataType.TEXT,
+    label: 'Industry Code',
+    name: 'industryCode',
+  },
+  {
+    type: FieldMetadataType.NUMBER,
+    label: 'Employee Count',
+    name: 'employeeCount',
+  },
+  {
+    type: FieldMetadataType.CURRENCY,
+    label: 'Annual Revenue',
+    name: 'annualRevenue',
+  },
 ];

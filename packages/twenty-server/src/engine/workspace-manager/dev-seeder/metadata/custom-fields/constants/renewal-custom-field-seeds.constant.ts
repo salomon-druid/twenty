@@ -19,9 +19,10 @@ export const RENEWAL_CUSTOM_FIELD_SEEDS: FieldMetadataSeed[] = [
     name: 'status',
     options: [
       { label: 'Pending', value: 'PENDING', position: 0, color: 'yellow' },
-      { label: 'Accepted', value: 'ACCEPTED', position: 1, color: 'green' },
-      { label: 'Declined', value: 'DECLINED', position: 2, color: 'red' },
-      { label: 'Expired', value: 'EXPIRED', position: 3, color: 'gray' },
+      { label: 'Contacted', value: 'CONTACTED', position: 1, color: 'blue' },
+      { label: 'Negotiated', value: 'NEGOTIATED', position: 2, color: 'purple' },
+      { label: 'Renewed', value: 'RENEWED', position: 3, color: 'green' },
+      { label: 'Expired', value: 'EXPIRED', position: 4, color: 'red' },
     ],
   },
   {

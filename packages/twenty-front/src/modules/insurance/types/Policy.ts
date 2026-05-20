@@ -16,6 +16,31 @@ export type Policy = {
   status: string;
   coverageDetails: string | null;
   insurer: string | null;
+  // Commercial/Industrial specific fields
+  policyType: string;
+  sumInsured: {
+    __typename?: 'Currency';
+    amountMicros: number | null;
+    currencyCode: string;
+  } | null;
+  deductible: {
+    __typename?: 'Currency';
+    amountMicros: number | null;
+    currencyCode: string;
+  } | null;
+  coInsurance: number | null;
+  underwriter: string | null;
+  brokerageRate: number | null;
+  invoiceNumber: string | null;
+  paymentTerms: string;
+  industryCode: string | null;
+  employeeCount: number | null;
+  annualRevenue: {
+    __typename?: 'Currency';
+    amountMicros: number | null;
+    currencyCode: string;
+  } | null;
+  // Relations
   companyId: string | null;
   pointOfContactId: string | null;
   ownerId: string | null;
