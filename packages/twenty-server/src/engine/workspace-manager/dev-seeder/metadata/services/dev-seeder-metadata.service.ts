@@ -26,6 +26,18 @@ import { PET_CARE_AGREEMENT_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-mana
 import { PET_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/pet-custom-object-seed.constant';
 import { ROCKET_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/rocket-custom-object-seed.constant';
 import { SURVEY_RESULT_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/survey-results-object-seed.constant';
+import { CLAIM_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/claim-custom-object-seed.constant';
+import { POLICY_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/policy-custom-object-seed.constant';
+import { PREMIUM_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/premium-custom-object-seed.constant';
+import { PROVISION_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/provision-custom-object-seed.constant';
+import { RENEWAL_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/renewal-custom-object-seed.constant';
+import { RISK_PROFILE_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/risk-profile-custom-object-seed.constant';
+import { CLAIM_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/claim-custom-field-seeds.constant';
+import { POLICY_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/policy-custom-field-seeds.constant';
+import { PREMIUM_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/premium-custom-field-seeds.constant';
+import { PROVISION_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/provision-custom-field-seeds.constant';
+import { RENEWAL_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/renewal-custom-field-seeds.constant';
+import { RISK_PROFILE_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/risk-profile-custom-field-seeds.constant';
 import { type FieldMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/field-metadata-seed.type';
 import { type ObjectMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/object-metadata-seed.type';
 
@@ -84,6 +96,13 @@ export class DevSeederMetadataService {
         // Junction objects (minimal pivots)
         { seed: EMPLOYMENT_HISTORY_CUSTOM_OBJECT_SEED },
         { seed: PET_CARE_AGREEMENT_CUSTOM_OBJECT_SEED },
+        // Insurance objects
+        { seed: POLICY_CUSTOM_OBJECT_SEED, fields: POLICY_CUSTOM_FIELD_SEEDS },
+        { seed: CLAIM_CUSTOM_OBJECT_SEED, fields: CLAIM_CUSTOM_FIELD_SEEDS },
+        { seed: RENEWAL_CUSTOM_OBJECT_SEED, fields: RENEWAL_CUSTOM_FIELD_SEEDS },
+        { seed: RISK_PROFILE_CUSTOM_OBJECT_SEED, fields: RISK_PROFILE_CUSTOM_FIELD_SEEDS },
+        { seed: PREMIUM_CUSTOM_OBJECT_SEED, fields: PREMIUM_CUSTOM_FIELD_SEEDS },
+        { seed: PROVISION_CUSTOM_OBJECT_SEED, fields: PROVISION_CUSTOM_FIELD_SEEDS },
       ],
       fields: [
         { objectName: 'company', seeds: COMPANY_CUSTOM_FIELD_SEEDS },
@@ -129,6 +148,66 @@ export class DevSeederMetadataService {
           targetFieldLabel: 'Pet',
           targetFieldIcon: 'IconCat',
         },
+        // Insurance: Company -> Policies
+        {
+          sourceObjectName: 'company',
+          name: 'policies',
+          label: 'Policies',
+          icon: 'IconShield',
+          targetObjectName: POLICY_CUSTOM_OBJECT_SEED.nameSingular,
+          targetFieldLabel: 'Company',
+          targetFieldIcon: 'IconBuildingSkyscraper',
+        },
+        // Insurance: Person -> Policies (as point of contact)
+        {
+          sourceObjectName: 'person',
+          name: 'policies',
+          label: 'Policies',
+          icon: 'IconShield',
+          targetObjectName: POLICY_CUSTOM_OBJECT_SEED.nameSingular,
+          targetFieldLabel: 'Point of Contact',
+          targetFieldIcon: 'IconUser',
+        },
+        // Insurance: Company -> Claims
+        {
+          sourceObjectName: 'company',
+          name: 'claims',
+          label: 'Claims',
+          icon: 'IconAlertTriangle',
+          targetObjectName: CLAIM_CUSTOM_OBJECT_SEED.nameSingular,
+          targetFieldLabel: 'Company',
+          targetFieldIcon: 'IconBuildingSkyscraper',
+        },
+        // Insurance: Person -> Claims
+        {
+          sourceObjectName: 'person',
+          name: 'claims',
+          label: 'Claims',
+          icon: 'IconAlertTriangle',
+          targetObjectName: CLAIM_CUSTOM_OBJECT_SEED.nameSingular,
+          targetFieldLabel: 'Person',
+          targetFieldIcon: 'IconUser',
+        },
+        // Insurance: Company -> Risk Profiles
+        {
+          sourceObjectName: 'company',
+          name: 'riskProfiles',
+          label: 'Risk Profiles',
+          icon: 'IconChartBar',
+          targetObjectName: RISK_PROFILE_CUSTOM_OBJECT_SEED.nameSingular,
+          targetFieldLabel: 'Company',
+          targetFieldIcon: 'IconBuildingSkyscraper',
+        },
+        // Insurance: Person -> Risk Profiles
+        {
+          sourceObjectName: 'person',
+          name: 'riskProfiles',
+          label: 'Risk Profiles',
+          icon: 'IconChartBar',
+          targetObjectName: RISK_PROFILE_CUSTOM_OBJECT_SEED.nameSingular,
+          targetFieldLabel: 'Person',
+          targetFieldIcon: 'IconUser',
+        },
       ],
       junctionConfigs: [
         // Employment History junction configs
@@ -157,6 +236,37 @@ export class DevSeederMetadataService {
           objectName: 'person',
           fieldName: 'caredForPets',
           junctionTargetFieldRef: `${PET_CARE_AGREEMENT_CUSTOM_OBJECT_SEED.nameSingular}.pet`,
+        },
+        // Insurance junction configs
+        {
+          objectName: 'company',
+          fieldName: 'policies',
+          junctionTargetFieldRef: `${POLICY_CUSTOM_OBJECT_SEED.nameSingular}.company`,
+        },
+        {
+          objectName: 'person',
+          fieldName: 'policies',
+          junctionTargetFieldRef: `${POLICY_CUSTOM_OBJECT_SEED.nameSingular}.pointOfContact`,
+        },
+        {
+          objectName: 'company',
+          fieldName: 'claims',
+          junctionTargetFieldRef: `${CLAIM_CUSTOM_OBJECT_SEED.nameSingular}.company`,
+        },
+        {
+          objectName: 'person',
+          fieldName: 'claims',
+          junctionTargetFieldRef: `${CLAIM_CUSTOM_OBJECT_SEED.nameSingular}.person`,
+        },
+        {
+          objectName: 'company',
+          fieldName: 'riskProfiles',
+          junctionTargetFieldRef: `${RISK_PROFILE_CUSTOM_OBJECT_SEED.nameSingular}.company`,
+        },
+        {
+          objectName: 'person',
+          fieldName: 'riskProfiles',
+          junctionTargetFieldRef: `${RISK_PROFILE_CUSTOM_OBJECT_SEED.nameSingular}.person`,
         },
       ],
     },
