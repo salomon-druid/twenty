@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 
+import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
 import { EmailService } from 'src/engine/core-modules/email/email.service';
 import { TwentyORMService } from 'src/engine/twenty-orm/twenty-orm.service';
 
@@ -46,7 +47,16 @@ export class InsuranceNotificationService {
   constructor(
     private readonly emailService: EmailService,
     private readonly twentyORMService: TwentyORMService,
+    private readonly twentyConfigService: TwentyConfigService,
   ) {}
+
+  private getFromAddress(): string {
+    const fromName = this.twentyConfigService.get('EMAIL_FROM_NAME') ?? 'Twenty';
+    const fromAddress =
+      this.twentyConfigService.get('EMAIL_FROM_ADDRESS') ?? 'no-reply@twenty.com';
+
+    return `${fromName} <${fromAddress}>`;
+  }
 
   async sendRenewalReminder(data: RenewalReminderData): Promise<void> {
     const subject =
@@ -73,6 +83,7 @@ Ihr Versicherungsmanagement-System
 
     try {
       await this.emailService.send({
+        from: this.getFromAddress(),
         to: data.brokerEmail,
         subject,
         text: body,
@@ -109,6 +120,7 @@ Ihr Versicherungsmanagement-System
 
     try {
       await this.emailService.send({
+        from: this.getFromAddress(),
         to: data.brokerEmail,
         subject,
         text: body,
@@ -146,6 +158,7 @@ Ihr Versicherungsmanagement-System
 
     try {
       await this.emailService.send({
+        from: this.getFromAddress(),
         to: data.brokerEmail,
         subject,
         text: body,
@@ -185,6 +198,7 @@ Ihr Versicherungsmanagement-System
 
     try {
       await this.emailService.send({
+        from: this.getFromAddress(),
         to: assignedToEmail,
         subject,
         text: body,

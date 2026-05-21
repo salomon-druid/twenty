@@ -52,11 +52,9 @@ export class BrokerDashboardService {
           'policy',
         );
 
-      const policyWhere: Record<string, unknown> = brokerId
-        ? { brokerId }
-        : {};
-
-      const allPolicies = await policyRepo.find({ where: policyWhere });
+      const allPolicies = await policyRepo.find(
+        brokerId ? { where: { brokerId } } : undefined,
+      );
       const activePolicies = allPolicies.filter((p) => p.status === 'active');
 
       const expiring30 = activePolicies.filter(
@@ -81,11 +79,9 @@ export class BrokerDashboardService {
           'claim',
         );
 
-      const claimWhere: Record<string, unknown> = brokerId
-        ? { brokerId }
-        : {};
-
-      const allClaims = await claimRepo.find({ where: claimWhere });
+      const allClaims = await claimRepo.find(
+        brokerId ? { where: { brokerId } } : undefined,
+      );
       const openClaims = allClaims.filter(
         (c) => c.status !== 'closed' && c.status !== 'rejected',
       );
@@ -106,13 +102,9 @@ export class BrokerDashboardService {
           'provision',
         );
 
-      const provisionWhere: Record<string, unknown> = brokerId
-        ? { brokerId }
-        : {};
-
-      const allProvisions = await provisionRepo.find({
-        where: provisionWhere,
-      });
+      const allProvisions = await provisionRepo.find(
+        brokerId ? { where: { brokerId } } : undefined,
+      );
       const totalCommission = allProvisions.reduce(
         (sum, p) => sum + (p.amount?.amountMicros ?? 0),
         0,
@@ -128,11 +120,9 @@ export class BrokerDashboardService {
           'insuranceTask',
         );
 
-      const taskWhere: Record<string, unknown> = brokerId
-        ? { brokerId }
-        : {};
-
-      const allTasks = await taskRepo.find({ where: taskWhere });
+      const allTasks = await taskRepo.find(
+        brokerId ? { where: { brokerId } } : undefined,
+      );
       const openTasks = allTasks.filter(
         (t) => t.status !== 'completed' && t.status !== 'cancelled',
       );

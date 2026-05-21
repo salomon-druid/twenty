@@ -6,6 +6,8 @@ import { InsuranceNotificationService } from 'src/modules/insurance/services/ins
 import { WorkspaceService } from 'src/engine/core-modules/workspace/services/workspace.service';
 import { TwentyORMService } from 'src/engine/twenty-orm/twenty-orm.service';
 
+const REMINDER_DAYS = [90, 30];
+
 @Injectable()
 export class EnhancedRenewalScheduler {
   private readonly logger = new Logger(EnhancedRenewalScheduler.name);
@@ -52,7 +54,6 @@ export class EnhancedRenewalScheduler {
     try {
       const now = new Date();
       const ninetyDays = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
-      const thirtyDays = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
 
       const policyRepo =
         await this.twentyORMService.getRepositoryForWorkspace(
@@ -70,58 +71,86 @@ export class EnhancedRenewalScheduler {
         },
       });
 
+      if (expiringPolicies.length === 0) {
+        return;
+      }
+
+      // Batch-load all brokers and companies referenced by expiring policies
+      const brokerIds = [
+        ...new Set(
+          expiringPolicies
+            .map((p) => p.brokerId)
+            .filter((id): id is string => id != null),
+        ),
+      ];
+      const companyIds = [
+        ...new Set(
+          expiringPolicies
+            .map((p) => p.companyId)
+            .filter((id): id is string => id != null),
+        ),
+      ];
+
+      const brokerRepo =
+        await this.twentyORMService.getRepositoryForWorkspace(
+          workspaceId,
+          'broker',
+        );
+      const brokers = await brokerRepo.find({
+        where: { id: { in: brokerIds } },
+      });
+      const brokerMap = new Map(brokers.map((b) => [b.id, b]));
+
+      const companyMap = new Map<string, string>();
+      if (companyIds.length > 0) {
+        const companyRepo =
+          await this.twentyORMService.getRepositoryForWorkspace(
+            workspaceId,
+            'company',
+          );
+        const companies = await companyRepo.find({
+          where: { id: { in: companyIds } },
+        });
+        for (const c of companies) {
+          companyMap.set(c.id, c.name ?? 'Unbekannt');
+        }
+      }
+
       for (const policy of expiringPolicies) {
         if (!policy.endDate || !policy.brokerId) continue;
 
         const endDate = new Date(policy.endDate);
-        const daysUntilExpiry = Math.ceil(
+        const daysUntilExpiry = Math.round(
           (endDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
         );
 
-        // Send reminders at 90 and 30 days
-        if (daysUntilExpiry === 90 || daysUntilExpiry === 30) {
-          try {
-            const brokerRepo =
-              await this.twentyORMService.getRepositoryForWorkspace(
-                workspaceId,
-                'broker',
-              );
-            const broker = await brokerRepo.findOne({
-              where: { id: policy.brokerId },
-            });
+        if (!REMINDER_DAYS.includes(daysUntilExpiry)) {
+          continue;
+        }
 
-            if (!broker?.email) continue;
+        const broker = brokerMap.get(policy.brokerId);
+        if (!broker?.email) continue;
 
-            // Get company name
-            let companyName = 'Unbekannt';
-            if (policy.companyId) {
-              const companyRepo =
-                await this.twentyORMService.getRepositoryForWorkspace(
-                  workspaceId,
-                  'company',
-                );
-              const company = await companyRepo.findOne({
-                where: { id: policy.companyId },
-              });
-              companyName = company?.name ?? 'Unbekannt';
-            }
+        const companyName = policy.companyId
+          ? companyMap.get(policy.companyId) ?? 'Unbekannt'
+          : 'Unbekannt';
 
-            await this.notificationService.sendRenewalReminder({
-              workspaceId,
-              brokerEmail: broker.email,
-              brokerName: broker.name,
-              policyNumber: policy.policyNumber,
-              companyName,
-              renewalDate: endDate,
-              daysUntilExpiry,
-              premium: policy.premium?.amountMicros ?? null,
-              currencyCode: policy.premium?.currencyCode ?? 'EUR',
-            });
-          } catch (error) {
-            this.logger.error(
-              `Error sending renewal reminder for policy ${policy.policyNumber}: ${error.message}`,
-            );
-          }
+        try {
+          await this.notificationService.sendRenewalReminder({
+            workspaceId,
+            brokerEmail: broker.email,
+            brokerName: broker.name,
+            policyNumber: policy.policyNumber,
+            companyName,
+            renewalDate: endDate,
+            daysUntilExpiry,
+            premium: policy.premium?.amountMicros ?? null,
+            currencyCode: policy.premium?.currencyCode ?? 'EUR',
+          });
+        } catch (error) {
+          this.logger.error(
+            `Error sending renewal reminder for policy ${policy.policyNumber}: ${error.message}`,
+          );
         }
       }
     } catch (error) {

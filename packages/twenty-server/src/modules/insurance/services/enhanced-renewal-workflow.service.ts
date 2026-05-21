@@ -24,6 +24,15 @@ const VALID_TRANSITIONS: Record<string, string[]> = {
   expired: [],
 };
 
+// Map old (Phase 1) renewal statuses to enhanced workflow equivalents
+const LEGACY_STATUS_MAP: Record<string, string> = {
+  pending: 'draft',
+  contacted: 'market_research',
+  negotiated: 'negotiation',
+  renewed: 'renewed',
+  expired: 'expired',
+};
+
 const TERMINAL_STATUSES = ['renewed', 'expired'];
 
 @Injectable()
@@ -31,6 +40,14 @@ export class EnhancedRenewalWorkflowService {
   private readonly logger = new Logger(EnhancedRenewalWorkflowService.name);
 
   constructor(private readonly twentyORMService: TwentyORMService) {}
+
+  /**
+   * Maps legacy renewal statuses to the enhanced workflow equivalents.
+   * Used when reading existing data from the database.
+   */
+  static mapLegacyStatus(status: string): string {
+    return LEGACY_STATUS_MAP[status] ?? status;
+  }
 
   async updateRenewalStatus(
     workspaceId: string,
@@ -53,21 +70,29 @@ export class EnhancedRenewalWorkflowService {
         return false;
       }
 
-      const allowedTransitions = VALID_TRANSITIONS[renewal.status] || [];
+      // Map legacy status to enhanced workflow status
+      const currentStatus = EnhancedRenewalWorkflowService.mapLegacyStatus(
+        renewal.status,
+      );
+      const targetStatus = EnhancedRenewalWorkflowService.mapLegacyStatus(
+        newStatus,
+      );
 
-      if (!allowedTransitions.includes(newStatus)) {
+      const allowedTransitions = VALID_TRANSITIONS[currentStatus] || [];
+
+      if (!allowedTransitions.includes(targetStatus)) {
         this.logger.warn(
-          `Invalid transition from ${renewal.status} to ${newStatus} for renewal ${renewalId}`,
+          `Invalid transition from ${renewal.status} (mapped: ${currentStatus}) to ${newStatus} (mapped: ${targetStatus}) for renewal ${renewalId}`,
         );
         return false;
       }
 
       await renewalRepository.update(renewalId, {
-        status: newStatus,
+        status: targetStatus,
       });
 
       this.logger.log(
-        `Renewal ${renewalId} status updated from ${renewal.status} to ${newStatus}`,
+        `Renewal ${renewalId} status updated from ${renewal.status} to ${targetStatus}`,
       );
 
       return true;
@@ -80,11 +105,17 @@ export class EnhancedRenewalWorkflowService {
   }
 
   getValidTransitions(currentStatus: string): string[] {
-    return VALID_TRANSITIONS[currentStatus] || [];
+    const mapped =
+      EnhancedRenewalWorkflowService.mapLegacyStatus(currentStatus);
+
+    return VALID_TRANSITIONS[mapped] || [];
   }
 
   isTerminalStatus(status: string): boolean {
-    return TERMINAL_STATUSES.includes(status);
+    const mapped =
+      EnhancedRenewalWorkflowService.mapLegacyStatus(status);
+
+    return TERMINAL_STATUSES.includes(mapped);
   }
 
   getAllStatuses(): string[] {
