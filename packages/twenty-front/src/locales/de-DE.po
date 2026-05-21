@@ -17777,3 +17777,733 @@ msgstr "Ihr Arbeitsbereich hat kein aktives Abonnement. Bitte kontaktieren Sie I
 #: src/modules/settings/billing/components/SettingsBillingContent.tsx
 msgid "Your workspace will be disabled"
 msgstr "Ihr Arbeitsbereich wird deaktiviert"
+
+# ============================================================
+# Insurance Objects — German Translations
+# ============================================================
+
+# ----- Object Names (Singular) -----
+msgid "Policy"
+msgstr "Police"
+
+msgid "Claim"
+msgstr "Schaden"
+
+msgid "Renewal"
+msgstr "Verlängerung"
+
+msgid "Risk Profile"
+msgstr "Risikoprofil"
+
+msgid "Premium"
+msgstr "Prämie"
+
+msgid "Provision"
+msgstr "Provision"
+
+msgid "Broker"
+msgstr "Makler"
+
+msgid "Quote"
+msgstr "Angebot"
+
+msgid "Insurance Task"
+msgstr "Versicherungsaufgabe"
+
+msgid "Site"
+msgstr "Standort"
+
+# ----- Object Names (Plural) -----
+msgid "Policies"
+msgstr "Policen"
+
+msgid "Claims"
+msgstr "Schäden"
+
+msgid "Renewals"
+msgstr "Verlängerungen"
+
+msgid "Risk Profiles"
+msgstr "Risikoprofile"
+
+msgid "Premiums"
+msgstr "Prämien"
+
+msgid "Provisions"
+msgstr "Provisionen"
+
+msgid "Brokers"
+msgstr "Makler"
+
+msgid "Quotes"
+msgstr "Angebote"
+
+msgid "Insurance Tasks"
+msgstr "Versicherungsaufgaben"
+
+msgid "Sites"
+msgstr "Standorte"
+
+# ----- Policy Fields -----
+msgid "Policy Number"
+msgstr "Policennummer"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Start Date"
+msgstr "Startdatum"
+
+msgid "End Date"
+msgstr "Enddatum"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Coverage Details"
+msgstr "Deckungsdetails"
+
+msgid "Insurer"
+msgstr "Versicherer"
+
+msgid "Policy Type"
+msgstr "Policeart"
+
+msgid "Sum Insured"
+msgstr "Versicherungssumme"
+
+msgid "Deductible"
+msgstr "Selbstbeteiligung"
+
+msgid "Co-Insurance (%)"
+msgstr "Mitversicherung (%)"
+
+msgid "Underwriter"
+msgstr "Underwriter"
+
+msgid "Brokerage Rate (%)"
+msgstr "Maklercourtage (%)"
+
+msgid "Invoice Number"
+msgstr "Rechnungsnummer"
+
+msgid "Payment Terms"
+msgstr "Zahlungsbedingungen"
+
+msgid "Industry Code"
+msgstr "Branchencode"
+
+msgid "Employee Count"
+msgstr "Mitarbeiteranzahl"
+
+msgid "Annual Revenue"
+msgstr "Jahresumsatz"
+
+# ----- Policy Type Options (insurance type) -----
+msgid "Commercial"
+msgstr "Gewerblich"
+
+msgid "Industrial"
+msgstr "Industriell"
+
+msgid "Liability"
+msgstr "Haftpflicht"
+
+msgid "Property"
+msgstr "Sachversicherung"
+
+msgid "Cyber"
+msgstr "Cyber"
+
+msgid "Directors & Officers"
+msgstr "D&O-Versicherung"
+
+# ----- Policy Status Options -----
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Expired"
+msgstr "Abgelaufen"
+
+msgid "Cancelled"
+msgstr "Storniert"
+
+msgid "Pending"
+msgstr "Ausstehend"
+
+# ----- Policy Type (commercial/industrial) Options -----
+msgid "Mixed"
+msgstr "Gemischt"
+
+# ----- Payment Terms Options -----
+msgid "Monthly"
+msgstr "Monatlich"
+
+msgid "Quarterly"
+msgstr "Quartalsweise"
+
+msgid "Semi-Annual"
+msgstr "Halbjährlich"
+
+msgid "Annual"
+msgstr "Jährlich"
+
+msgid "Single Premium"
+msgstr "Einmalprämie"
+
+# ----- Claim Fields -----
+msgid "Claim Number"
+msgstr "Schadensnummer"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Amount"
+msgstr "Betrag"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "Resolution"
+msgstr "Lösung"
+
+msgid "Claim Type"
+msgstr "Schadenstyp"
+
+msgid "Date of Loss"
+msgstr "Schadensdatum"
+
+msgid "Date Reported"
+msgstr "Meldedatum"
+
+msgid "Reserve Amount"
+msgstr "Rückstellungsbetrag"
+
+msgid "Paid Amount"
+msgstr "Ausgezahlter Betrag"
+
+msgid "Recovered Amount"
+msgstr "Zurückerhaltener Betrag"
+
+msgid "Deductible Applied"
+msgstr "Angewandter Selbstbeteiligung"
+
+msgid "Adjuster"
+msgstr "Regulierer"
+
+msgid "Adjuster Company"
+msgstr "Regulierergesellschaft"
+
+msgid "Law Firm"
+msgstr "Anwaltskanzlei"
+
+msgid "Court Case"
+msgstr "Gerichtsverfahren"
+
+msgid "Settlement Date"
+msgstr "Vergleichsdatum"
+
+msgid "Root Cause"
+msgstr "Ursache"
+
+msgid "Prevention Measures"
+msgstr "Präventionsmaßnahmen"
+
+msgid "Reinsurance"
+msgstr "Rückversicherung"
+
+msgid "Reinsurer Share (%)"
+msgstr "Rückversicherer-Anteil (%)"
+
+# ----- Claim Status Options -----
+msgid "Open"
+msgstr "Offen"
+
+msgid "In Review"
+msgstr "In Prüfung"
+
+msgid "Approved"
+msgstr "Genehmigt"
+
+msgid "Rejected"
+msgstr "Abgelehnt"
+
+msgid "Closed"
+msgstr "Geschlossen"
+
+# ----- Claim Type Options -----
+msgid "Property Damage"
+msgstr "Sachschaden"
+
+msgid "Business Interruption"
+msgstr "Betriebsunterbrechung"
+
+msgid "Machinery Breakdown"
+msgstr "Maschinenschaden"
+
+msgid "Cyber Incident"
+msgstr "Cyber-Vorfall"
+
+msgid "Environmental"
+msgstr "Umweltschaden"
+
+msgid "Product Liability"
+msgstr "Produkthaftpflicht"
+
+# ----- Renewal Fields -----
+msgid "Renewal Date"
+msgstr "Verlängerungsdatum"
+
+msgid "New Premium"
+msgstr "Neue Prämie"
+
+msgid "Notes"
+msgstr "Notizen"
+
+# ----- Renewal Status Options -----
+msgid "Contacted"
+msgstr "Kontaktiert"
+
+msgid "Negotiated"
+msgstr "Verhandelt"
+
+msgid "Renewed"
+msgstr "Verlängert"
+
+# ----- Risk Profile Fields -----
+msgid "Risk Category"
+msgstr "Risikokategorie"
+
+msgid "Assessment Date"
+msgstr "Bewertungsdatum"
+
+msgid "Score"
+msgstr "Punktzahl"
+
+# ----- Risk Category Options -----
+msgid "Low"
+msgstr "Niedrig"
+
+msgid "Medium"
+msgstr "Mittel"
+
+msgid "High"
+msgstr "Hoch"
+
+msgid "Critical"
+msgstr "Kritisch"
+
+# ----- Premium Fields -----
+msgid "Period"
+msgstr "Zeitraum"
+
+msgid "Payment Status"
+msgstr "Zahlungsstatus"
+
+msgid "Due Date"
+msgstr "Fälligkeitsdatum"
+
+msgid "Paid Date"
+msgstr "Bezahldatum"
+
+# ----- Premium Period Options -----
+msgid "Semi-Annual"
+msgstr "Halbjährlich"
+
+# ----- Payment Status Options -----
+msgid "Paid"
+msgstr "Bezahlt"
+
+msgid "Unpaid"
+msgstr "Unbezahlt"
+
+msgid "Overdue"
+msgstr "Überfällig"
+
+msgid "Partial"
+msgstr "Teilweise"
+
+# ----- Provision Fields -----
+msgid "Commission Rate (%)"
+msgstr "Provisionssatz (%)"
+
+msgid "Bonus-Malus Tier"
+msgstr "Bonus-Malus-Stufe"
+
+# ----- Bonus-Malus Tier Options -----
+msgid "Bonus 5"
+msgstr "Bonus 5"
+
+msgid "Bonus 4"
+msgstr "Bonus 4"
+
+msgid "Bonus 3"
+msgstr "Bonus 3"
+
+msgid "Bonus 2"
+msgstr "Bonus 2"
+
+msgid "Bonus 1"
+msgstr "Bonus 1"
+
+msgid "Neutral"
+msgstr "Neutral"
+
+msgid "Malus 1"
+msgstr "Malus 1"
+
+msgid "Malus 2"
+msgstr "Malus 2"
+
+msgid "Malus 3"
+msgstr "Malus 3"
+
+# ----- Provision Status Options -----
+
+# ----- Provision Period Options -----
+
+# ----- Broker Fields -----
+msgid "Name"
+msgstr "Name"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "License Number"
+msgstr "Lizenznummer"
+
+msgid "Website"
+msgstr "Webseite"
+
+# ----- Quote Fields -----
+msgid "Quote Number"
+msgstr "Angebotsnummer"
+
+msgid "Valid Until"
+msgstr "Gültig bis"
+
+msgid "Proposed Premium"
+msgstr "Vorgeschlagene Prämie"
+
+msgid "Negotiation Notes"
+msgstr "Verhandlungsnotizen"
+
+msgid "Bound Date"
+msgstr "Bindungsdatum"
+
+# ----- Quote Status Options -----
+msgid "Draft"
+msgstr "Entwurf"
+
+msgid "Sent"
+msgstr "Gesendet"
+
+msgid "Negotiating"
+msgstr "In Verhandlung"
+
+msgid "Bound"
+msgstr "Gebunden"
+
+msgid "Declined"
+msgstr "Abgelehnt"
+
+# ----- Insurance Task Fields -----
+msgid "Title"
+msgstr "Titel"
+
+msgid "Priority"
+msgstr "Priorität"
+
+# ----- Task Priority Options -----
+msgid "Urgent"
+msgstr "Dringend"
+
+# ----- Task Status Options -----
+msgid "In Progress"
+msgstr "In Bearbeitung"
+
+msgid "Completed"
+msgstr "Abgeschlossen"
+
+# ----- Task Type Options -----
+msgid "Renewal Follow-up"
+msgstr "Verlängerungs-Follow-up"
+
+msgid "Claim Follow-up"
+msgstr "Schaden-Follow-up"
+
+msgid "Client Meeting"
+msgstr "Kundengespräch"
+
+msgid "Document Request"
+msgstr "Dokumentenanfrage"
+
+msgid "Inspection"
+msgstr "Inspektion"
+
+msgid "Payment Reminder"
+msgstr "Zahlungserinnerung"
+
+msgid "Other"
+msgstr "Sonstiges"
+
+# ----- Site Fields -----
+msgid "Construction Year"
+msgstr "Baujahr"
+
+msgid "Area (sqm)"
+msgstr "Fläche (qm)"
+
+msgid "Last Inspection"
+msgstr "Letzte Inspektion"
+
+# ----- Site Type Options -----
+msgid "Headquarters"
+msgstr "Hauptsitz"
+
+msgid "Branch"
+msgstr "Niederlassung"
+
+msgid "Factory"
+msgstr "Fabrik"
+
+msgid "Warehouse"
+msgstr "Lager"
+
+msgid "Retail"
+msgstr "Einzelhandel"
+
+msgid "Construction Site"
+msgstr "Baustelle"
+
+# ----- Risk Zone Options -----
+msgid "Low Risk"
+msgstr "Geringes Risiko"
+
+msgid "Medium Risk"
+msgstr "Mittleres Risiko"
+
+msgid "High Risk"
+msgstr "Hohes Risiko"
+
+msgid "Critical Risk"
+msgstr "Kritisches Risiko"
+
+# ----- UI Strings from Components -----
+msgid "Renewal Workflow"
+msgstr "Verlängerungs-Workflow"
+
+msgid "Current Status:"
+msgstr "Aktueller Status:"
+
+msgid "Renewal Date:"
+msgstr "Verlängerungsdatum:"
+
+msgid "Actions:"
+msgstr "Aktionen:"
+
+msgid "Not set"
+msgstr "Nicht festgelegt"
+
+msgid "Claims Dashboard"
+msgstr "Schaden-Dashboard"
+
+msgid "Total Claims"
+msgstr "Gesamtschäden"
+
+msgid "Financial Overview"
+msgstr "Finanzübersicht"
+
+msgid "Total Amount:"
+msgstr "Gesamtbetrag:"
+
+msgid "Open Amount:"
+msgstr "Offener Betrag:"
+
+msgid "Recent Claims"
+msgstr "Letzte Schäden"
+
+msgid "Premium Overview"
+msgstr "Prämienübersicht"
+
+msgid "Total Premiums"
+msgstr "Gesamtprämien"
+
+msgid "Payment Rate"
+msgstr "Quote"
+
+msgid "Financial Summary"
+msgstr "Finanzübersicht"
+
+msgid "Outstanding:"
+msgstr "Ausstehend:"
+
+msgid "Recent Premiums"
+msgstr "Letzte Prämien"
+
+msgid "No due date"
+msgstr "Kein Fälligkeitsdatum"
+
+msgid "Documents"
+msgstr "Dokumente"
+
+msgid "Uploading..."
+msgstr "Wird hochgeladen..."
+
+msgid "Upload failed"
+msgstr "Upload fehlgeschlagen"
+
+msgid "Supported formats: PDF, DOC, DOCX, JPG, PNG"
+msgstr "Unstützte Formate: PDF, DOC, DOCX, JPG, PNG"
+
+msgid "N/A"
+msgstr "N/A"
+
+# ----- Enhanced Renewal Workflow Status Options -----
+msgid "Market Research"
+msgstr "Marktforschung"
+
+msgid "Quote Requested"
+msgstr "Angebot angefordert"
+
+msgid "Quotes Received"
+msgstr "Angebote eingegangen"
+
+msgid "Client Review"
+msgstr "Kundenprüfung"
+
+msgid "Issued"
+msgstr "Ausgestellt"
+
+msgid "Renewal Due"
+msgstr "Verlängerung fällig"
+
+msgid "Renewal Negotiation"
+msgstr "Verlängerungsverhandlung"
+
+# ----- Claims Workflow Status Options -----
+msgid "Reported"
+msgstr "Gemeldet"
+
+msgid "Acknowledged"
+msgstr "Bestätigt"
+
+msgid "Assigned"
+msgstr "Zugewiesen"
+
+msgid "Investigation"
+msgstr "Untersuchung"
+
+msgid "Assessment"
+msgstr "Bewertung"
+
+msgid "Settlement"
+msgstr "Vergleich"
+
+msgid "Payment"
+msgstr "Zahlung"
+
+msgid "Litigation"
+msgstr "Rechtsstreit"
+
+msgid "Court"
+msgstr "Gericht"
+
+msgid "Judgment"
+msgstr "Urteil"
+
+msgid "Recovery"
+msgstr "Regress"
+
+msgid "Subrogation"
+msgstr "Subrogation"
+
+msgid "Recovered"
+msgstr "Zurückerhalten"
+
+# ----- Quote Workflow Status Options -----
+msgid "Internal Review"
+msgstr "Interne Prüfung"
+
+msgid "Sent to Client"
+msgstr "An Kunde gesendet"
+
+# ----- Broker Dashboard UI Strings -----
+msgid "Broker Dashboard"
+msgstr "Makler-Dashboard"
+
+msgid "Portfolio Overview"
+msgstr "Portfolioübersicht"
+
+msgid "Total Policies"
+msgstr "Gesamtpolicen"
+
+msgid "Active Policies"
+msgstr "Aktive Policen"
+
+msgid "Expiring in 30 Days"
+msgstr "Läuft in 30 Tagen ab"
+
+msgid "Expiring in 60 Days"
+msgstr "Läuft in 60 Tagen ab"
+
+msgid "Expiring in 90 Days"
+msgstr "Läuft in 90 Tagen ab"
+
+msgid "Total Premium Volume"
+msgstr "Gesamtprämienvolumen"
+
+msgid "Claims Overview"
+msgstr "Schadenübersicht"
+
+msgid "Open Claims"
+msgstr "Offene Schäden"
+
+msgid "Total Claim Amount"
+msgstr "Gesamtschadenbetrag"
+
+msgid "Open Claim Amount"
+msgstr "Offener Schadenbetrag"
+
+msgid "Revenue Overview"
+msgstr "Ertragsübersicht"
+
+msgid "Total Commission"
+msgstr "Gesamtprovision"
+
+msgid "Pending Commission"
+msgstr "Ausstehende Provision"
+
+msgid "Task Overview"
+msgstr "Aufgabenübersicht"
+
+msgid "Open Tasks"
+msgstr "Offene Aufgaben"
+
+msgid "Overdue Tasks"
+msgstr "Überfällige Aufgaben"
+
+msgid "Client Overview"
+msgstr "Kundenübersicht"
+
+msgid "Total Clients"
+msgstr "Gesamtkunden"
+
+# ----- Claims Workflow UI -----
+msgid "Claims Workflow"
+msgstr "Schaden-Workflow"
+
+msgid "Claim Number:"
+msgstr "Schadensnummer:"
+
+msgid "Claim Type:"
+msgstr "Schadenstyp:"
+
+msgid "Actions:"
+msgstr "Aktionen:"
