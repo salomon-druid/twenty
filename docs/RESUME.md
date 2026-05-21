@@ -33,7 +33,7 @@ npx nx typecheck twenty-front
 ### Git
 - **Remote:** `https://github.com/salomon-druid/twenty`
 - **Branch:** `main`
-- **Latest commit:** `c6d0c8261b` — "feat(insurance): add Phase 6 — Docker self-hosting deployment config"
+- **Latest commit:** `0e72770390` — "feat(insurance): Phase B — enhanced workflows, email notifications, broker dashboard"
 
 ### Commits (newest first)
 ```
@@ -173,24 +173,18 @@ All 6 original phases are complete. The next work is **improvements for commerci
 - **Regulatory** — BaFin oversight, VVG compliance
 - **Common insurers** — Allianz, AXA, Zurich, HDI, Hiscox, etc.
 
-## Current Phase: Phase A Improvements (Commercial/Industrial Insurance)
+## Current Phase: Phase B Complete ✅
+
+All Phase B work is complete and pushed to main (commit `0e72770390`).
 
 ### Completed Steps
-1. ✅ Fix renewal status alignment (dev seeder ↔ workflow)
-2. ✅ Add commercial/industrial fields to Policy (13 new fields)
-3. ✅ Add commercial/industrial fields to Claim (18 new fields)
-4. ✅ Create Quote/Angebot object
-5. ✅ Create Insurance Task object
-6. ✅ Create Site/Location object
-7. ✅ Build verification (TypeScript compiles, typecheck passes)
-
-### Next Steps (Phase B — Important)
-1. Add German translations for all new fields and objects
-2. Enhanced renewal workflow (market research → quote → negotiation → binding)
-3. Claims workflow (reported → investigation → settlement)
-4. Email notifications (renewal reminders, claim updates)
-5. Broker dashboard with key metrics
-6. Document management improvements
+1. ✅ Enhanced renewal workflow (draft → market_research → quote_requested → quotes_received → negotiation → client_review → bound → issued → active → renewal_due → renewal_negotiation → renewed/expired)
+2. ✅ Claims workflow (reported → acknowledged → assigned → investigation → assessment → negotiation → settlement → payment → closed, with litigation and recovery paths)
+3. ✅ Quote-to-Policy workflow (draft → internal_review → sent_to_client → client_review → negotiation → bound → policy_issued → active)
+4. ✅ Email notifications (renewal reminders at 90/30 days, claim updates, premium due reminders, task reminders)
+5. ✅ Broker dashboard (portfolio, claims, revenue, task, client metrics)
+6. ✅ German translations for all new workflow statuses and UI strings
+7. ✅ Build verification (backend compiles, frontend typecheck passes)
 
 ### Next Steps (Phase C — Valuable)
 1. Reinsurance object
