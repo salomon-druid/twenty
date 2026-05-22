@@ -5,7 +5,7 @@ type ReinsuranceSummary = {
   activeTreaties: number;
   expiringTreaties: number;
   totalCededAmount: number;
-  totalCommission: number;
+  averageCommissionRate: number;
   treatiesByType: Record<string, number>;
   treatiesByReinsurer: Record<string, number>;
 };
@@ -54,8 +54,8 @@ export function ReinsuranceDashboard({
           <span>{formatCurrency(summary.totalCededAmount)}</span>
         </div>
         <div>
-          <span>{t`Total Commission`}</span>
-          <span>{summary.totalCommission}%</span>
+          <span>{t`Avg Commission`}</span>
+          <span>{summary.averageCommissionRate > 0 ? `${summary.averageCommissionRate}%` : t`N/A`}</span>
         </div>
       </div>
 
@@ -71,7 +71,7 @@ export function ReinsuranceDashboard({
               <span>
                 {alert.type === 'expired'
                   ? t`Expired`
-                  : t`Expiring in ${alert.daysRemaining} days`}
+                  : t`Expiring soon`}
               </span>
               <span>{alert.validTo ?? t`N/A`}</span>
             </div>

@@ -114,7 +114,7 @@ export class ClientDashboardService {
         return null;
       }
 
-      // Fetch policies
+      // Fetch policies (Policy has companyId)
       const policyRepo =
         await this.twentyORMService.getRepositoryForWorkspace(
           workspaceId,
@@ -124,17 +124,20 @@ export class ClientDashboardService {
         where: { companyId },
       });
 
-      // Fetch claims
+      // Collect policy IDs for filtering related entities
+      const policyIds = new Set(policies.map((p) => p.id).filter(Boolean));
+
+      // Fetch claims (Claim has companyId)
       const claimRepo =
         await this.twentyORMService.getRepositoryForWorkspace(
           workspaceId,
           'claim',
-        );
+      );
       const claims = await claimRepo.find({
         where: { companyId },
       });
 
-      // Fetch risk profiles
+      // Fetch risk profiles (RiskProfile has companyId)
       const riskProfileRepo =
         await this.twentyORMService.getRepositoryForWorkspace(
           workspaceId,
@@ -144,27 +147,31 @@ export class ClientDashboardService {
         where: { companyId },
       });
 
-      // Fetch premiums
+      // Fetch all premiums and filter by policyId in memory
+      // (Premium has policyId, NOT companyId)
       const premiumRepo =
         await this.twentyORMService.getRepositoryForWorkspace(
           workspaceId,
           'premium',
         );
-      const premiums = await premiumRepo.find({
-        where: { companyId },
-      });
+      const allPremiums = await premiumRepo.find();
+      const premiums = allPremiums.filter((p) =>
+        p.policyId && policyIds.has(p.policyId),
+      );
 
-      // Fetch renewals
+      // Fetch all renewals and filter by policyId in memory
+      // (Renewal has policyId, NOT companyId)
       const renewalRepo =
         await this.twentyORMService.getRepositoryForWorkspace(
           workspaceId,
           'renewal',
         );
-      const renewals = await renewalRepo.find({
-        where: { companyId },
-      });
+      const allRenewals = await renewalRepo.find();
+      const renewals = allRenewals.filter((r) =>
+        r.policyId && policyIds.has(r.policyId),
+      );
 
-      // Fetch sites
+      // Fetch sites (Site has companyId)
       const siteRepo =
         await this.twentyORMService.getRepositoryForWorkspace(
           workspaceId,
@@ -174,7 +181,7 @@ export class ClientDashboardService {
         where: { companyId },
       });
 
-      // Fetch tasks
+      // Fetch tasks (InsuranceTask has companyId)
       const taskRepo =
         await this.twentyORMService.getRepositoryForWorkspace(
           workspaceId,
@@ -184,15 +191,17 @@ export class ClientDashboardService {
         where: { companyId },
       });
 
-      // Fetch reinsurances
+      // Fetch all reinsurances and filter by policyId in memory
+      // (Reinsurance has policyId, NOT companyId)
       const reinsuranceRepo =
         await this.twentyORMService.getRepositoryForWorkspace(
           workspaceId,
           'reinsurance',
         );
-      const reinsurances = await reinsuranceRepo.find({
-        where: { companyId },
-      });
+      const allReinsurances = await reinsuranceRepo.find();
+      const reinsurances = allReinsurances.filter((r) =>
+        r.policyId && policyIds.has(r.policyId),
+      );
 
       // Compute summary
       const now = new Date();

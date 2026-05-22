@@ -18868,3 +18868,9 @@ msgstr "Alle Aufgaben"
 
 msgid "All Sites"
 msgstr "Alle Standorte"
+
+msgid "Expiring soon"
+msgstr "Läuft bald ab"
+
+msgid "Avg Commission"
+msgstr "Durchschnittliche Provision"

@@ -7,7 +7,7 @@ type ReinsuranceSummary = {
   activeTreaties: number;
   expiringTreaties: number;
   totalCededAmount: number;
-  totalCommission: number;
+  averageCommissionRate: number;
   treatiesByType: Record<string, number>;
   treatiesByReinsurer: Record<string, number>;
 };
@@ -68,6 +68,10 @@ export class ReinsuranceService {
         0,
       );
 
+      const averageCommissionRate = activeTreaties.length > 0
+        ? Math.round((totalCommission / activeTreaties.length) * 10) / 10
+        : 0;
+
       const treatiesByType: Record<string, number> = {};
       for (const treaty of allTreaties) {
         const type = treaty.type ?? 'Unknown';
@@ -86,7 +90,7 @@ export class ReinsuranceService {
         activeTreaties: activeTreaties.length,
         expiringTreaties: expiringTreaties.length,
         totalCededAmount,
-        totalCommission,
+        averageCommissionRate,
         treatiesByType,
         treatiesByReinsurer,
       };
@@ -99,7 +103,7 @@ export class ReinsuranceService {
         activeTreaties: 0,
         expiringTreaties: 0,
         totalCededAmount: 0,
-        totalCommission: 0,
+        averageCommissionRate: 0,
         treatiesByType: {},
         treatiesByReinsurer: {},
       };

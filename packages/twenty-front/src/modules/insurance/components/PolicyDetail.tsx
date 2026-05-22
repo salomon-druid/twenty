@@ -138,7 +138,7 @@ export function PolicyDetail({
         </div>
         <div>
           <span>{t`Co-Insurance`}</span>
-          <span>{policy.coInsurance ?? t`N/A`}</span>
+          <span>{policy.coInsurance != null ? `${policy.coInsurance}%` : t`N/A`}</span>
         </div>
       </div>
 
@@ -211,7 +211,7 @@ export function PolicyDetail({
               <span>{formatDate(renewal.renewalDate)}</span>
               <span>{renewal.status}</span>
               {renewal.newPremium && (
-                <span>{formatCurrency(renewal.newPremium.amountMicros, renewal.newPremium.currencyCode)}</span>
+                <span>{formatCurrency(renewal.newPremium.amountMicros, renewal.newPremium.currencyCode ?? 'EUR')}</span>
               )}
             </div>
           ))

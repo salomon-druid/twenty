@@ -57,13 +57,7 @@ export function ClaimDetail({
           <h3>{t`Claim Progress`}</h3>
           <div>
             {CLAIM_STATUS_STEPS.map((step, index) => (
-              <div
-                key={step}
-                style={{
-                  fontWeight: index <= currentStepIndex ? 'bold' : 'normal',
-                  opacity: index <= currentStepIndex ? 1 : 0.5,
-                }}
-              >
+              <div key={step}>
                 <span>{step}</span>
                 {index <= currentStepIndex && <span>✓</span>}
               </div>
@@ -222,7 +216,7 @@ export function ClaimDetail({
           </div>
           <div>
             <span>{t`Court Case`}</span>
-            <span>{claim.courtCase ?? t`N/A`}</span>
+            <span>{claim.courtCase ? t`Yes` : t`No`}</span>
           </div>
         </div>
       )}
