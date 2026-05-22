@@ -173,23 +173,26 @@ All 6 original phases are complete. The next work is **improvements for commerci
 - **Regulatory** — BaFin oversight, VVG compliance
 - **Common insurers** — Allianz, AXA, Zurich, HDI, Hiscox, etc.
 
-## Current Phase: Phase B Complete ✅
+## Current Phase: Phase C Complete ✅
 
-All Phase B work is complete and pushed to main (commit `0e72770390`).
+All Phase C work is complete and pushed to main.
 
 ### Completed Steps
-1. ✅ Enhanced renewal workflow (draft → market_research → quote_requested → quotes_received → negotiation → client_review → bound → issued → active → renewal_due → renewal_negotiation → renewed/expired)
-2. ✅ Claims workflow (reported → acknowledged → assigned → investigation → assessment → negotiation → settlement → payment → closed, with litigation and recovery paths)
-3. ✅ Quote-to-Policy workflow (draft → internal_review → sent_to_client → client_review → negotiation → bound → policy_issued → active)
-4. ✅ Email notifications (renewal reminders at 90/30 days, claim updates, premium due reminders, task reminders)
-5. ✅ Broker dashboard (portfolio, claims, revenue, task, client metrics)
-6. ✅ German translations for all new workflow statuses and UI strings
-7. ✅ Build verification (backend compiles, frontend typecheck passes)
+1. ✅ Reinsurance object (entity, field seeds, object seed, dev seeder, frontend type, German translations — already existed from previous session)
+2. ✅ ReinsuranceService (treaty summary, treaty alerts, ceded premium by policy)
+3. ✅ ClientDashboardService (full client dashboard data: policies, claims, risk profiles, premiums, renewals, sites, tasks, reinsurances)
+4. ✅ ReportsDashboard component (portfolio summary, claims analysis, revenue report, renewal calendar)
+5. ✅ ReinsuranceDashboard component (treaty overview, alerts, treaties by type/reinsurer)
+6. ✅ InsuranceHub component (central navigation hub for all insurance modules)
+7. ✅ PolicyDetail component (enriched policy record page with claims, premiums, renewals, reinsurance)
+8. ✅ ClaimDetail component (enriched claim record page with workflow progress, quick actions, litigation)
+9. ✅ German translations for all new components
+10. ✅ Registered ReinsuranceService and ClientDashboardService in InsuranceModule
 
-### Next Steps (Phase C — Valuable)
-1. Reinsurance object
-2. Client dashboard
-3. Standard reports
-4. Navigation improvements
-5. List view enhancements
-6. Record page improvements
+### Next Steps (Phase D — Nice to Have)
+1. E2E tests for insurance workflows
+2. Performance optimization for dashboard queries
+3. Email template customization
+4. Advanced filtering and search
+5. Export functionality (PDF, Excel)
+6. Mobile responsive improvements

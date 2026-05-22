@@ -18505,5 +18505,366 @@ msgstr "Schadensnummer:"
 msgid "Claim Type:"
 msgstr "Schadenstyp:"
 
+# ----- Reinsurance -----
+msgid "Reinsurance"
+msgstr "Rückversicherung"
+
+msgid "Reinsurances"
+msgstr "Rückversicherungen"
+
+msgid "Treaty Number"
+msgstr "Vertragsnummer"
+
+msgid "Treaty Type"
+msgstr "Vertragstyp"
+
+msgid "Reinsurer"
+msgstr "Rückversicherer"
+
+msgid "Ceded Percentage (%)"
+msgstr "Abgetretene Quote (%)"
+
+msgid "Ceded Amount"
+msgstr "Abgetragener Betrag"
+
+msgid "Commission"
+msgstr "Provision"
+
+msgid "Valid From"
+msgstr "Gültig ab"
+
+msgid "Valid To"
+msgstr "Gültig bis"
+
+msgid "Quota Share"
+msgstr "Quote"
+
+msgid "Surplus"
+msgstr "Surplus"
+
+msgid "Excess of Loss"
+msgstr "Schadenexzedent"
+
+msgid "Stop Loss"
+msgstr "Stop-Loss"
+
 msgid "Actions:"
 msgstr "Aktionen:"
+
+# ----- Client Dashboard -----
+msgid "Client Dashboard"
+msgstr "Kunden-Dashboard"
+
+msgid "Policies"
+msgstr "Policen"
+
+msgid "Open Claims"
+msgstr "Offene Schäden"
+
+msgid "Open Tasks"
+msgstr "Offene Aufgaben"
+
+msgid "overdue"
+msgstr "überfällig"
+
+msgid "Upcoming Renewals"
+msgstr "Bevorstehende Verlängerungen"
+
+msgid "No policies found."
+msgstr "Keine Policen gefunden."
+
+msgid "Expiring Soon"
+msgstr "Läuft bald ab"
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "End Date:"
+msgstr "Enddatum:"
+
+msgid "Premium:"
+msgstr "Prämie:"
+
+msgid "Policy Type:"
+msgstr "Policeart:"
+
+msgid "Insurer:"
+msgstr "Versicherer:"
+
+msgid "Claims History"
+msgstr "Schadenhistorie"
+
+msgid "No claims found."
+msgstr "Keine Schäden gefunden."
+
+msgid "Amount:"
+msgstr "Betrag:"
+
+msgid "Date:"
+msgstr "Datum:"
+
+msgid "Claim Type:"
+msgstr "Schadenstyp:"
+
+msgid "Risk Profile"
+msgstr "Risikoprofil"
+
+msgid "No risk profiles found."
+msgstr "Keine Risikoprofile gefunden."
+
+msgid "Risk Category:"
+msgstr "Risikokategorie:"
+
+msgid "Score:"
+msgstr "Punktzahl:"
+
+msgid "Assessment Date:"
+msgstr "Bewertungsdatum:"
+
+msgid "Notes:"
+msgstr "Notizen:"
+
+msgid "Premium Payment Status"
+msgstr "Prämienzahlungsstatus"
+
+msgid "Total Paid"
+msgstr "Gesamt bezahlt"
+
+msgid "Total Unpaid"
+msgstr "Gesamt unbezahlt"
+
+msgid "Total Overdue"
+msgstr "Gesamt überfällig"
+
+msgid "Total Premiums"
+msgstr "Gesamtprämien"
+
+msgid "No upcoming renewals."
+msgstr "Keine bevorstehenden Verlängerungen."
+
+msgid "New Premium:"
+msgstr "Neue Prämie:"
+
+msgid "Sites"
+msgstr "Standorte"
+
+msgid "No sites found."
+msgstr "Keine Standorte gefunden."
+
+msgid "Risk Zone:"
+msgstr "Risikozone:"
+
+msgid "Address:"
+msgstr "Adresse:"
+
+msgid "Area (sqm):"
+msgstr "Fläche (qm):"
+
+msgid "Tasks"
+msgstr "Aufgaben"
+
+msgid "No tasks found."
+msgstr "Keine Aufgaben gefunden."
+
+msgid "Due Date:"
+msgstr "Fälligkeitsdatum:"
+
+msgid "Type:"
+msgstr "Typ:"
+
+msgid "Description:"
+msgstr "Beschreibung:"
+
+# ----- Reports Dashboard -----
+msgid "Reports Dashboard"
+msgstr "Berichte-Dashboard"
+
+msgid "Portfolio Summary"
+msgstr "Portfolioübersicht"
+
+msgid "Claims Analysis"
+msgstr "Schadenanalyse"
+
+msgid "Revenue Report"
+msgstr "Ertragsbericht"
+
+msgid "Renewal Calendar"
+msgstr "Verlängerungskalender"
+
+msgid "Total Policies"
+msgstr "Gesamtpolicen"
+
+msgid "Active Policies"
+msgstr "Aktive Policen"
+
+msgid "Total Claims"
+msgstr "Gesamtschäden"
+
+msgid "Closed Claims"
+msgstr "Geschlossene Schäden"
+
+msgid "Total Commission"
+msgstr "Gesamtprovision"
+
+msgid "Pending Commission"
+msgstr "Ausstehende Provision"
+
+msgid "Claims Ratio"
+msgstr "Schadenquote"
+
+msgid "Average Claim"
+msgstr "Durchschnittsschaden"
+
+msgid "Expiring in 30 Days"
+msgstr "Läuft in 30 Tagen ab"
+
+msgid "Expiring in 60 Days"
+msgstr "Läuft in 60 Tagen ab"
+
+msgid "Expiring in 90 Days"
+msgstr "Läuft in 90 Tagen ab"
+
+msgid "By Type"
+msgstr "Nach Typ"
+
+msgid "Monthly"
+msgstr "Monatlich"
+
+msgid "Unknown"
+msgstr "Unbekannt"
+
+# ----- Reinsurance Dashboard -----
+msgid "Reinsurance Overview"
+msgstr "Rückversicherungsübersicht"
+
+msgid "Total Treaties"
+msgstr "Gesamtverträge"
+
+msgid "Active Treaties"
+msgstr "Aktive Verträge"
+
+msgid "Expiring Treaties"
+msgstr "Ablaufende Verträge"
+
+msgid "Total Ceded Amount"
+msgstr "Gesamter abgetragener Betrag"
+
+msgid "Treaty Alerts"
+msgstr "Vertragswarnungen"
+
+msgid "No treaty alerts."
+msgstr "Keine Vertragswarnungen."
+
+msgid "Expired"
+msgstr "Abgelaufen"
+
+msgid "N/A"
+msgstr "N/A"
+
+msgid "Treaties by Type"
+msgstr "Verträge nach Typ"
+
+msgid "Treaties by Reinsurer"
+msgstr "Verträge nach Rückversicherer"
+
+# ----- Reports & Analytics -----
+msgid "Reports & Analytics"
+msgstr "Berichte & Analysen"
+
+msgid "Total Premium Volume"
+msgstr "Gesamtprämienvolumen"
+
+msgid "Average Claim Amount"
+msgstr "Durchschnittlicher Schadenbetrag"
+
+msgid "Paid Commission"
+msgstr "Bezahlte Provision"
+
+msgid "Commission by Period"
+msgstr "Provision nach Zeitraum"
+
+msgid "Renewals by Month"
+msgstr "Verlängerungen nach Monat"
+
+msgid "No date"
+msgstr "Kein Datum"
+
+# ----- Insurance Hub -----
+msgid "Insurance Hub"
+msgstr "Versicherungs-Hub"
+
+msgid "Commercial & Industrial Insurance Management"
+msgstr "Gewerbe- und Industrieversicherungsmanagement"
+
+msgid "Manage insurance policies, coverage details, and policy lifecycle"
+msgstr "Versicherungspolicen, Deckungsdetails und Policen-Lebenszyklus verwalten"
+
+msgid "Track and manage insurance claims from report to settlement"
+msgstr "Versicherungsschäden von der Meldung bis zur Regulierung verwalten"
+
+msgid "Manage policy renewals and renewal workflows"
+msgstr "Policenverlängerungen und Verlängerungs-Workflows verwalten"
+
+msgid "Create and manage insurance quotes and proposals"
+msgstr "Versicherungsangebote und -vorschläge erstellen und verwalten"
+
+msgid "Manage reinsurance treaties and ceded premiums"
+msgstr "Rückversicherungsverträge und abgetretene Prämien verwalten"
+
+msgid "Assess and manage client risk profiles"
+msgstr "Kundenrisikoprofile bewerten und verwalten"
+
+msgid "Track premium payments and payment status"
+msgstr "Prämienzahlungen und Zahlungsstatus verfolgen"
+
+msgid "Manage broker commissions and provisions"
+msgstr "Maklerprovisionen verwalten"
+
+msgid "Manage insurance-related tasks and follow-ups"
+msgstr "Versicherungsbezogene Aufgaben und Follow-ups verwalten"
+
+msgid "Manage client sites and locations"
+msgstr "Kundenstandorte verwalten"
+
+msgid "Overview of portfolio, claims, revenue, and tasks"
+msgstr "Übersicht über Portfolio, Schäden, Einnahmen und Aufgaben"
+
+msgid "Client-facing dashboard with policies, claims, and renewals"
+msgstr "Kundenorientiertes Dashboard mit Policen, Schäden und Verlängerungen"
+
+msgid "Portfolio summary, claims analysis, revenue reports"
+msgstr "Portfolioübersicht, Schadenanalyse, Ertragsberichte"
+
+# ----- Navigation -----
+msgid "Insurance"
+msgstr "Versicherung"
+
+msgid "All Policies"
+msgstr "Alle Policen"
+
+msgid "All Claims"
+msgstr "Alle Schäden"
+
+msgid "All Renewals"
+msgstr "Alle Verlängerungen"
+
+msgid "All Quotes"
+msgstr "Alle Angebote"
+
+msgid "All Reinsurances"
+msgstr "Alle Rückversicherungen"
+
+msgid "All Risk Profiles"
+msgstr "Alle Risikoprofile"
+
+msgid "All Premiums"
+msgstr "Alle Prämien"
+
+msgid "All Provisions"
+msgstr "Alle Provisionen"
+
+msgid "All Tasks"
+msgstr "Alle Aufgaben"
+
+msgid "All Sites"
+msgstr "Alle Standorte"

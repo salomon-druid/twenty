@@ -35,6 +35,7 @@ import { RISK_PROFILE_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/de
 import { QUOTE_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/quote-custom-object-seed.constant';
 import { INSURANCE_TASK_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/insurance-task-custom-object-seed.constant';
 import { SITE_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/site-custom-object-seed.constant';
+import { REINSURANCE_CUSTOM_OBJECT_SEED } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-objects/constants/reinsurance-custom-object-seed.constant';
 import { CLAIM_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/claim-custom-field-seeds.constant';
 import { POLICY_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/policy-custom-field-seeds.constant';
 import { PREMIUM_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/premium-custom-field-seeds.constant';
@@ -44,6 +45,7 @@ import { RISK_PROFILE_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/de
 import { QUOTE_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/quote-custom-field-seeds.constant';
 import { INSURANCE_TASK_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/insurance-task-custom-field-seeds.constant';
 import { SITE_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/site-custom-field-seeds.constant';
+import { REINSURANCE_CUSTOM_FIELD_SEEDS } from 'src/engine/workspace-manager/dev-seeder/metadata/custom-fields/constants/reinsurance-custom-field-seeds.constant';
 import { type FieldMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/field-metadata-seed.type';
 import { type ObjectMetadataSeed } from 'src/engine/workspace-manager/dev-seeder/metadata/types/object-metadata-seed.type';
 
@@ -112,6 +114,7 @@ export class DevSeederMetadataService {
         { seed: QUOTE_CUSTOM_OBJECT_SEED, fields: QUOTE_CUSTOM_FIELD_SEEDS },
         { seed: INSURANCE_TASK_CUSTOM_OBJECT_SEED, fields: INSURANCE_TASK_CUSTOM_FIELD_SEEDS },
         { seed: SITE_CUSTOM_OBJECT_SEED, fields: SITE_CUSTOM_FIELD_SEEDS },
+        { seed: REINSURANCE_CUSTOM_OBJECT_SEED, fields: REINSURANCE_CUSTOM_FIELD_SEEDS },
       ],
       fields: [
         { objectName: 'company', seeds: COMPANY_CUSTOM_FIELD_SEEDS },
@@ -267,6 +270,26 @@ export class DevSeederMetadataService {
           targetFieldLabel: 'Company',
           targetFieldIcon: 'IconBuildingSkyscraper',
         },
+        // Insurance: Company -> Reinsurances
+        {
+          sourceObjectName: 'company',
+          name: 'reinsurances',
+          label: 'Reinsurances',
+          icon: 'IconShield',
+          targetObjectName: REINSURANCE_CUSTOM_OBJECT_SEED.nameSingular,
+          targetFieldLabel: 'Company',
+          targetFieldIcon: 'IconBuildingSkyscraper',
+        },
+        // Insurance: Person -> Reinsurances
+        {
+          sourceObjectName: 'person',
+          name: 'reinsurances',
+          label: 'Reinsurances',
+          icon: 'IconShield',
+          targetObjectName: REINSURANCE_CUSTOM_OBJECT_SEED.nameSingular,
+          targetFieldLabel: 'Person',
+          targetFieldIcon: 'IconUser',
+        },
       ],
       junctionConfigs: [
         // Employment History junction configs
@@ -354,6 +377,17 @@ export class DevSeederMetadataService {
           objectName: 'company',
           fieldName: 'sites',
           junctionTargetFieldRef: `${SITE_CUSTOM_OBJECT_SEED.nameSingular}.company`,
+        },
+        // Insurance: Reinsurance junction configs
+        {
+          objectName: 'company',
+          fieldName: 'reinsurances',
+          junctionTargetFieldRef: `${REINSURANCE_CUSTOM_OBJECT_SEED.nameSingular}.company`,
+        },
+        {
+          objectName: 'person',
+          fieldName: 'reinsurances',
+          junctionTargetFieldRef: `${REINSURANCE_CUSTOM_OBJECT_SEED.nameSingular}.person`,
         },
       ],
     },
